@@ -1,0 +1,32 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="product-datail">
+
+        <img src="{% if product.image %}{{ product.image.url }}
+        {% else %}{% static 'img/no_image.png' %}{% endif %}" alt="">
+
+        <div class="correct">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h5><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h5>
+            <h5 class="card-text">Цена: <strong>{{ product.sell_price }} &#x20bd</strong></h5>
+            <a  href="{% url 'cart:cart_add' product.id %}" class="bt btn btn-dark add-to-cart">Добавить в корзину</a>
+
+            <h5 >Описание товара</h5>
+            <p class="card-texts">{{ product.description|linebreaks }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+
+<!--здесь обязательное присутствие блока footer-->
+{% block footer %}
+       <div class="footer-decoration-main-page">
+        <a href="#"><img src="{% static 'img/free-icon-vk-2111747 (1).png' %}" alt=""></a>
+        <a href="#"><img src="{% static 'img/free-icon-telegram-2111673 (1).png' %}" alt=""></a>
+        <h6 class="box-4">Автор: Калинкин Александр Васильевич</h6>
+    </div>
+{% endblock %}
